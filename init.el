@@ -324,6 +324,8 @@ you should place your code here."
   (spacemacs//set-monospaced-font "Source Code Pro" "微软雅黑" 14 16)
   (setq-default evil-escape-key-sequence "jk")
   (global-set-key (kbd "C-o") 'evil-escape)
+  (global-set-key (kbd "C-e") 'sp-splice-sexp)
+  (global-set-key (kbd "C-y") 'sp-rewrap-sexp)
 
   )
 
