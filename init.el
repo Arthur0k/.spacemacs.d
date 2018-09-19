@@ -324,8 +324,13 @@ you should place your code here."
   (spacemacs//set-monospaced-font "Source Code Pro" "微软雅黑" 14 16)
   (setq-default evil-escape-key-sequence "jk")
   (global-set-key (kbd "C-o") 'evil-escape)
-  (global-set-key (kbd "C-e") 'sp-splice-sexp)
-  (global-set-key (kbd "C-y") 'sp-rewrap-sexp)
+  (global-set-key (kbd "C-y") 'sp-splice-sexp)
+  (global-set-key (kbd "C-e") 'sp-rewrap-sexp)
+  (global-set-key (kbd "C-0") 'sp-forward-slurp-sexp)
+  (global-set-key (kbd "C-9") 'sp-wrap-round)
+  (global-set-key (kbd "C-8") 'sp-wrap-curly)
+  (global-set-key (kbd "C-7") 'sp-wrap-square)
+  (define-key evil-insert-state-map (kbd "C-h") 'backward-delete-char-untabify)
 
   )
 
