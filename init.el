@@ -326,6 +326,7 @@ you should place your code here."
   (global-set-key (kbd "C-o") 'evil-escape)
   (global-set-key (kbd "C-y") 'sp-splice-sexp)
   (global-set-key (kbd "C-e") 'sp-rewrap-sexp)
+  (global-set-key (kbd "C-\-") 'sp-forward-barf-sexp)
   (global-set-key (kbd "C-0") 'sp-forward-slurp-sexp)
   (global-set-key (kbd "C-9") 'sp-wrap-round)
   (global-set-key (kbd "C-8") 'sp-wrap-curly)
