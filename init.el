@@ -30,24 +30,22 @@ values."
    dotspacemacs-configuration-layer-path '()
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
-   '(
+   '(html
      ;; ----------------------------------------------------------------
      ;; Example of useful layers you may want to use right away.
      ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
      ;; <M-m f e R> (Emacs style) to install them.
      ;; ----------------------------------------------------------------
+     python
      (chinese :variables
-             chinese-enable-fcitx t
-             chinese-enable-youdao-dict t)
+              chinese-enable-fcitx t)
      themes-megapack
      javascript
-     python
-     html
      helm
      auto-completion
      better-defaults
      emacs-lisp
-     git
+     ;; git
      markdown
      org
      (shell :variables
@@ -61,7 +59,7 @@ values."
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
-   dotspacemacs-additional-packages '(jedi)
+   dotspacemacs-additional-packages '(jedi css-autoprefixer)
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
    ;; A list of packages that will not be installed and loaded.
@@ -325,12 +323,14 @@ you should place your code here."
   (setq-default evil-escape-key-sequence "jk")
   (global-set-key (kbd "C-o") 'evil-escape)
   (global-set-key (kbd "C-y") 'sp-splice-sexp)
-  (global-set-key (kbd "C-e") 'sp-rewrap-sexp)
+  (global-set-key (kbd "C-;") 'evil-jump-forward)
   (global-set-key (kbd "C-\-") 'sp-forward-barf-sexp)
   (global-set-key (kbd "C-0") 'sp-forward-slurp-sexp)
   (global-set-key (kbd "C-9") 'sp-wrap-round)
   (global-set-key (kbd "C-8") 'sp-wrap-curly)
   (global-set-key (kbd "C-7") 'sp-wrap-square)
+  (global-set-key (kbd "M-t") 'mc/mark-next-like-this)
+  (global-set-key (kbd "M-w") 'mc/mark-next-like-this-word)
   (define-key evil-insert-state-map (kbd "C-h") 'backward-delete-char-untabify)
 
   )
