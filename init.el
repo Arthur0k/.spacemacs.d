@@ -40,13 +40,16 @@ values."
      (chinese :variables
               chinese-enable-fcitx t)
      themes-megapack
-     javascript
+     (javascript :variables
+                 js2-basic-offset 2)
      helm
      auto-completion
      better-defaults
      emacs-lisp
      ;; git
+     treemacs
      markdown
+     multiple-cursors
      org
      (shell :variables
             shell-default-height 30
@@ -165,7 +168,7 @@ values."
    ;; and TAB or <C-m> and RET.
    ;; In the terminal, these pairs are generally indistinguishable, so this only
    ;; works in the GUI. (default nil)
-   dotspacemacs-distinguish-gui-tab nil
+   dotspacemacs-distinguish-gui-tab t
    ;; If non nil `Y' is remapped to `y$' in Evil states. (default nil)
    dotspacemacs-remap-Y-to-y$ nil
    ;; If non-nil, the shift mappings `<' and `>' retain visual state if used
@@ -214,7 +217,7 @@ values."
    dotspacemacs-enable-paste-transient-state nil
    ;; Which-key delay in seconds. The which-key buffer is the popup listing
    ;; the commands bound to the current keystroke sequence. (default 0.4)
-   dotspacemacs-which-key-delay 0.4
+   dotspacemacs-which-key-delay 0.2
    ;; Which-key frame position. Possible values are `right', `bottom' and
    ;; `right-then-bottom'. right-then-bottom tries to display the frame to the
    ;; right; if there is insufficient space it displays it at the bottom.
@@ -268,7 +271,7 @@ values."
    dotspacemacs-line-numbers 'relative
    ;; Code folding method. Possible values are `evil' and `origami'.
    ;; (default 'evil)
-   dotspacemacs-folding-method 'evil
+   dotspacemacs-folding-method 'origami
    ;; If non-nil smartparens-strict-mode will be enabled in programming modes.
    ;; (default nil)
    dotspacemacs-smartparens-strict-mode nil
@@ -329,8 +332,13 @@ you should place your code here."
   (global-set-key (kbd "C-9") 'sp-wrap-round)
   (global-set-key (kbd "C-8") 'sp-wrap-curly)
   (global-set-key (kbd "C-7") 'sp-wrap-square)
-  (global-set-key (kbd "M-t") 'mc/mark-next-like-this)
-  (global-set-key (kbd "M-w") 'mc/mark-next-like-this-word)
+
+  (evil-define-key 'insert emmet-mode-keymap (kbd "C-i") 'spacemacs/emmet-expand)
+  (evil-define-key 'insert emmet-mode-keymap (kbd "C-i") 'spacemacs/emmet-expand)
+  (evil-define-key 'hybrid emmet-mode-keymap (kbd "C-i") 'spacemacs/emmet-expand)
+  (evil-define-key 'hybrid emmet-mode-keymap (kbd "C-i") 'spacemacs/emmet-expand)
+  ;; (global-set-key (kbd "M-t") 'mc/mark-next-like-global)
+  ;; (this-set-key (kbd "M-w") 'mc/mark-next-like-this-word)
   (define-key evil-insert-state-map (kbd "C-h") 'backward-delete-char-untabify)
 
   )
