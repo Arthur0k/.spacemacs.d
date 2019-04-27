@@ -29,7 +29,7 @@ This function should only modify configuration layer settings."
    ;; If non-nil layers with lazy install support are lazy installed.
    ;; List of additional paths where to look for configuration layers.
    ;; Paths must have a trailing slash (i.e. `~/.mycontribs/')
-   dotspacemacs-configuration-layer-path '()
+   dotspacemacs-configuration-layer-path '("~/.spacemacs.d/")
 
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
@@ -53,12 +53,15 @@ This function should only modify configuration layer settings."
      org
      (shell :variables
             shell-default-height 30
+            shell-default-shell 'ansi-term
+            shell-default-term-shell "/bin/zsh"
             shell-default-position 'bottom)
      ;; spell-checking
      ;; syntax-checking
      treemacs
      ;; version-control
-     ;; arthur0wang
+     mylayer
+     search-engine
      )
 
    ;; List of additional packages that will be installed without being
@@ -451,6 +454,8 @@ If you are unsure, try setting them in `dotspacemacs/user-config' first."
       ("org-cn"   . "http://mirrors.tuna.tsinghua.edu.cn/elpa/org/")
       ("gnu-cn"   . "http://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/")))
 
+(setq tramp-ssh-controlmaster-options "-o ControlMaster=auto -o ControlPath='tramp.%%C' -o ControlPersist=no")
+
 ;; Produce backtraces when errors occur
 (setq debug-on-error t)
   )
@@ -498,9 +503,20 @@ before packages are loaded."
               js2-mode-show-strict-warnings nil)
             ;; )
 
+;; migrate custom-config to custom.el
 (setq custom-file (expand-file-name "custom.el" dotspacemacs-directory))
 (load custom-file 'no-error 'no-message)
-)
 
+;; 设置谷歌浏览器为默认启动项
+(setq browse-url-browser-function 'browse-url-generic
+      engine/browser-function 'browse-url-generic
+      browse-url-generic-program "chromium-browser")
+;; 添加百度搜索引擎
+(push '(baidu
+        :name "baidu"
+        :url "https://www.baidu.com/s?ie=utf-8&f=8&rsv_bp=1&tn=baidu&wd=%s")
+      search-engine-alist)
+
+)
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.

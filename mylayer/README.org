@@ -1,10 +1,10 @@
-#+TITLE: arthur0wang layer
+#+TITLE: mylayer layer
 # Document tags separated with "|" char
 # The example below contains 2 tags: "layer", "web service"
 #+TAGS: layer|web service
 
 # The maximum height of the logo should be 200 pixels.
-[[img/arthur0wang.png]]
+[[img/mylayer.png]]
 
 # TOC links should be GitHub style anchors.
 * Table of Contents                                        :TOC_4_gh:noexport:
@@ -24,7 +24,7 @@ This layer adds support for something.
 
 * Install
 To use this configuration layer, add it to your =~/.spacemacs=. You will need to
-add =arthur0wang= to the existing =dotspacemacs-configuration-layers= list in this
+add =mylayer= to the existing =dotspacemacs-configuration-layers= list in this
 file.
 
 * Key bindings
