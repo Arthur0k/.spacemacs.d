@@ -41,14 +41,16 @@ This function should only modify configuration layer settings."
      ;; ----------------------------------------------------------------
      auto-completion
      html
-     javascript
+     (javascript :variables
+                 javascript-fmt-tool 'prettier)
      python
      better-defaults
      emacs-lisp
-     ;; git
+     git
      ;; helm
      ivy
-     markdown
+     (markdown :variables
+                markdown-live-preview-engine 'vmd)
      multiple-cursors
      org
      (shell :variables
@@ -246,7 +248,7 @@ It should only modify the values of Spacemacs settings."
    ;; and TAB or `C-m' and `RET'.
    ;; In the terminal, these pairs are generally indistinguishable, so this only
    ;; works in the GUI. (default nil)
-   dotspacemacs-distinguish-gui-tab nil
+   dotspacemacs-distinguish-gui-tab t
 
    ;; Name of the default layout (default "Default")
    dotspacemacs-default-layout-name "Default"
@@ -422,6 +424,7 @@ It should only modify the values of Spacemacs settings."
    ;; Delete whitespace while saving buffer. Possible values are `all'
    ;; to aggressively delete empty line and long sequences of whitespace,
    ;; `trailing' to delete only the whitespace at end of lines, `changed' to
+
    ;; delete only whitespace for changed lines or `nil' to disable cleanup.
    ;; (default nil)
    dotspacemacs-whitespace-cleanup 'all
@@ -454,7 +457,14 @@ If you are unsure, try setting them in `dotspacemacs/user-config' first."
       ("org-cn"   . "http://mirrors.tuna.tsinghua.edu.cn/elpa/org/")
       ("gnu-cn"   . "http://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/")))
 
+;; 添加eslint-config-Airbnb execute path
+(add-to-list 'exec-path "/usr/local/nodejs/bin" t)
+
 (setq tramp-ssh-controlmaster-options "-o ControlMaster=auto -o ControlPath='tramp.%%C' -o ControlPersist=no")
+
+;;默认启动的frame尺寸
+(set-frame-width (selected-frame) 75)
+(set-frame-height (selected-frame) 33)
 
 ;; Produce backtraces when errors occur
 (setq debug-on-error t)
@@ -476,14 +486,15 @@ before packages are loaded."
   (setq inhibit-startup-message t)
 
   (setq-default evil-escape-key-sequence "jk")
+  (define-key key-translation-map (kbd "C-i") (kbd "<escape>"))
 
+  ;; 显示时间
+  (display-time-mode t)
 
   (defun my-web-mode-indent-setup ()
     (setq web-mode-markup-indent-offset 2)
     (setq web-mode-css-indent-offset 2)
     (setq web-mode-code-indent-offset 2)
-    (setq-default js2-basic-offset 2)
-    (setq-default js-indent-level 2)
     )
   (add-hook 'web-mode-hook 'my-web-mode-indent-setup)
 
@@ -497,10 +508,13 @@ before packages are loaded."
 
 ;; Change some defaults: customize them to override
 (setq-default js2-bounce-indent-p nil)
+;;js2mode 缩进
+(setq-default js2-basic-offset 2)
+(setq-default js-indent-level 2)
 ;; (autoload 'js2-mode
             ;; Disable js2 mode's syntax error highlighting by default...
-(setq-default js2-mode-show-parse-errors nil
-              js2-mode-show-strict-warnings nil)
+;; (setq-default js2-mode-show-parse-errors nil
+;;               js2-mode-show-strict-warnings nil)
             ;; )
 
 ;; migrate custom-config to custom.el
@@ -517,6 +531,12 @@ before packages are loaded."
         :url "https://www.baidu.com/s?ie=utf-8&f=8&rsv_bp=1&tn=baidu&wd=%s")
       search-engine-alist)
 
+;; git respository
+(setq magit-repository-directories
+      '(("~/.spacemacs.d/" . 2) ("~/Desktop/org" . 2)))
+
+
+
+
+
 )
-;; Do not write anything past this comment. This is where Emacs will
-;; auto-generate custom variable definitions.
