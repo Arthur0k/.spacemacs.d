@@ -73,7 +73,7 @@ This function should only modify configuration layer settings."
    ;; To use a local version of a package, use the `:location' property:
    ;; '(your-package :location "~/path/to/your-package/")
    ;; Also include the dependencies as they will not be resolved automatically.
-   dotspacemacs-additional-packages '(vue-mode)
+   dotspacemacs-additional-packages '(vue-mode ac-js2 xref-js2)
 
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
@@ -248,7 +248,7 @@ It should only modify the values of Spacemacs settings."
    ;; and TAB or `C-m' and `RET'.
    ;; In the terminal, these pairs are generally indistinguishable, so this only
    ;; works in the GUI. (default nil)
-   dotspacemacs-distinguish-gui-tab t
+   dotspacemacs-distinguish-gui-tab nil
 
    ;; Name of the default layout (default "Default")
    dotspacemacs-default-layout-name "Default"
@@ -486,7 +486,7 @@ before packages are loaded."
   (setq inhibit-startup-message t)
 
   (setq-default evil-escape-key-sequence "jk")
-  (define-key key-translation-map (kbd "C-i") (kbd "<escape>"))
+  (define-key key-translation-map (kbd "C-o") (kbd "<escape>"))
 
   ;; 显示时间
   (display-time-mode t)
@@ -506,34 +506,34 @@ before packages are loaded."
   ;; org-mode 代码插入快捷键
   (require 'org-tempo)
 
-;; Change some defaults: customize them to override
-(setq-default js2-bounce-indent-p nil)
-;;js2mode 缩进
-(setq-default js2-basic-offset 2)
-(setq-default js-indent-level 2)
-;; (autoload 'js2-mode
+  ;; Change some defaults: customize them to override
+  (setq-default js2-bounce-indent-p nil)
+  ;;js2mode 缩进
+  (setq-default js2-basic-offset 2)
+  (setq-default js-indent-level 2)
+  ;; (autoload 'js2-mode
             ;; Disable js2 mode's syntax error highlighting by default...
-;; (setq-default js2-mode-show-parse-errors nil
-;;               js2-mode-show-strict-warnings nil)
-            ;; )
+  ;; (setq-default js2-mode-show-parse-errors nil
+  ;;               js2-mode-show-strict-warnings nil)
+  ;; )
 
-;; migrate custom-config to custom.el
-(setq custom-file (expand-file-name "custom.el" dotspacemacs-directory))
-(load custom-file 'no-error 'no-message)
+  ;; migrate custom-config to custom.el
+  (setq custom-file (expand-file-name "custom.el" dotspacemacs-directory))
+  (load custom-file 'no-error 'no-message)
 
-;; 设置谷歌浏览器为默认启动项
-(setq browse-url-browser-function 'browse-url-generic
-      engine/browser-function 'browse-url-generic
-      browse-url-generic-program "chromium-browser")
-;; 添加百度搜索引擎
-(push '(baidu
-        :name "baidu"
-        :url "https://www.baidu.com/s?ie=utf-8&f=8&rsv_bp=1&tn=baidu&wd=%s")
-      search-engine-alist)
+  ;; 设置谷歌浏览器为默认启动项
+  (setq browse-url-browser-function 'browse-url-generic
+        engine/browser-function 'browse-url-generic
+        browse-url-generic-program "chromium-browser")
+  ;; 添加百度搜索引擎
+  (push '(baidu
+          :name "baidu"
+          :url "https://www.baidu.com/s?wd=%s")
+        search-engine-alist)
 
-;; git respository
-(setq magit-repository-directories
-      '(("~/.spacemacs.d/" . 2) ("~/Desktop/org" . 2)))
+  ;; git respository
+  (setq magit-repository-directories
+        '(("~/.spacemacs.d/" . 2) ("~/Desktop/org" . 2)))
 
 
 
