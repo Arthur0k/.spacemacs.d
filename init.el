@@ -39,16 +39,20 @@ This function should only modify configuration layer settings."
      ;; Uncomment some layer names and press `SPC f e R' (Vim style) or
      ;; `M-m f e R' (Emacs style) to install them.
      ;; ----------------------------------------------------------------
-     auto-completion
-     html
+     (auto-completion :variable
+                      spacemacs-default-company-backends '(company-files company-capf))
+     (html :variables
+           web-fmt-tool 'prettier)
      (javascript :variables
-                 javascript-fmt-tool 'prettier)
+                 javascript-fmt-tool 'prettier
+                 javascript-backend 'tern)
+     typescript
      python
      better-defaults
      emacs-lisp
      git
-     ;; helm
-     ivy
+     helm
+     ;; ivy
      (markdown :variables
                 markdown-live-preview-engine 'vmd)
      multiple-cursors
@@ -59,9 +63,9 @@ This function should only modify configuration layer settings."
             shell-default-term-shell "/bin/zsh"
             shell-default-position 'bottom)
      ;; spell-checking
-     ;; syntax-checking
+     syntax-checking
      treemacs
-     ;; version-control
+     version-control
      mylayer
      search-engine
      )
@@ -73,7 +77,7 @@ This function should only modify configuration layer settings."
    ;; To use a local version of a package, use the `:location' property:
    ;; '(your-package :location "~/path/to/your-package/")
    ;; Also include the dependencies as they will not be resolved automatically.
-   dotspacemacs-additional-packages '(vue-mode ac-js2 xref-js2)
+   dotspacemacs-additional-packages '()
 
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
@@ -458,16 +462,13 @@ If you are unsure, try setting them in `dotspacemacs/user-config' first."
       ("gnu-cn"   . "http://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/")))
 
 ;; 添加eslint-config-Airbnb execute path
-(add-to-list 'exec-path "/usr/local/nodejs/bin" t)
+;; (add-to-list 'exec-path "/usr/local/nodejs/bin" t)
 
 (setq tramp-ssh-controlmaster-options "-o ControlMaster=auto -o ControlPath='tramp.%%C' -o ControlPersist=no")
 
-;;默认启动的frame尺寸
-(set-frame-width (selected-frame) 75)
-(set-frame-height (selected-frame) 33)
 
 ;; Produce backtraces when errors occur
-(setq debug-on-error t)
+;; (setq debug-on-error t)
   )
 
 (defun dotspacemacs/user-load ()
@@ -535,7 +536,19 @@ before packages are loaded."
   (setq magit-repository-directories
         '(("~/.spacemacs.d/" . 2) ("~/Desktop/org" . 2)))
 
+  ;; 默认启动的frame尺寸
+  ;; (set-frame-width (selected-frame) 75)
+  ;; (set-frame-height (selected-frame) 33)
 
+
+  ;; web-mode编辑.vue文件
+  (setq auto-mode-alist
+        (push
+         '("\\.vue\\'" . web-mode)
+         auto-mode-alist))
+
+
+  (add-hook 'web-mode-hook 'spacemacs/toggle-smartparens-on) ;;turn-on
 
 
 

@@ -41,3 +41,22 @@
     (spacemacs/set-leader-keys "oo" 'youdao-dictionary-search-at-point+)
     )
 )
+
+(defun mylayer/web-format ()
+  "Call formatting tool specified in `web-fmt-tool'."
+  (interactive)
+  (cond
+   ((eq web-fmt-tool 'prettier)
+    (call-interactively 'prettier-js))
+   ((eq web-fmt-tool 'web-beautify)
+    (call-interactively 'web-beautify-js))
+   (t (error (concat "%s isn't valid web-fmt-tool value."
+                     " It should be 'web-beutify or 'prettier.")
+             (symbol-name web-fmt-tool)))))
+
+(defun mylayer/web-fmt-before-save-hook ()
+  (add-hook 'before-save-hook 'mylayer/web-format t t))
+
+;; (defun mylayer/pre-init-prettier-js ()
+;;   (if (eq web-fmt-tool 'prettier)
+;;       (add-to-list 'spacemacs--prettier-modes 'web-mode)))
