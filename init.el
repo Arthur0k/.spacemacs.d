@@ -39,6 +39,7 @@ This function should only modify configuration layer settings."
      ;; Uncomment some layer names and press `SPC f e R' (Vim style) or
      ;; `M-m f e R' (Emacs style) to install them.
      ;; ----------------------------------------------------------------
+     themes-megapack
      (auto-completion :variable
                       spacemacs-default-company-backends '(company-files company-capf))
      (html :variables
@@ -200,8 +201,8 @@ It should only modify the values of Spacemacs settings."
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press `SPC T n' to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
-   dotspacemacs-themes '(monokai
-                         spacemacs-dark
+   dotspacemacs-themes '(spacemacs-dark
+                         monokai
                          spacemacs-light)
 
    ;; Set the theme for the Spaceline. Supported themes are `spacemacs',
@@ -375,7 +376,7 @@ It should only modify the values of Spacemacs settings."
    ;; If non-nil pressing the closing parenthesis `)' key in insert mode passes
    ;; over any automatically added closing parenthesis, bracket, quote, etc…
    ;; This can be temporary disabled by pressing `C-q' before `)'. (default nil)
-   dotspacemacs-smart-closing-parenthesis t
+   dotspacemacs-smart-closing-parenthesis nil
 
    ;; Select a scope to highlight delimiters. Possible values are `any',
    ;; `current', `all' or `nil'. Default is `all' (highlight any scope and
@@ -464,8 +465,7 @@ If you are unsure, try setting them in `dotspacemacs/user-config' first."
 ;; 添加eslint-config-Airbnb execute path
 ;; (add-to-list 'exec-path "/usr/local/nodejs/bin" t)
 
-(setq tramp-ssh-controlmaster-options "-o ControlMaster=auto -o ControlPath='tramp.%%C' -o ControlPersist=no")
-
+;; (setq tramp-ssh-controlmaster-options "-o ControlMaster=auto -o ControlPath='tramp.%%C' -o ControlPersist=no")
 
 ;; Produce backtraces when errors occur
 ;; (setq debug-on-error t)
@@ -526,10 +526,11 @@ before packages are loaded."
   (setq browse-url-browser-function 'browse-url-generic
         engine/browser-function 'browse-url-generic
         browse-url-generic-program "chromium-browser")
+
   ;; 添加百度搜索引擎
   (push '(baidu
-          :name "baidu"
-          :url "https://www.baidu.com/s?wd=%s")
+          :name "Baidu"
+          :url "http://www.baidu.com/s?wd=%s")
         search-engine-alist)
 
   ;; git respository
@@ -537,8 +538,8 @@ before packages are loaded."
         '(("~/.spacemacs.d/" . 2) ("~/Desktop/org" . 2)))
 
   ;; 默认启动的frame尺寸
-  ;; (set-frame-width (selected-frame) 75)
-  ;; (set-frame-height (selected-frame) 33)
+  (set-frame-width (selected-frame) 75)
+  (set-frame-height (selected-frame) 33)
 
 
   ;; web-mode编辑.vue文件
@@ -548,7 +549,7 @@ before packages are loaded."
          auto-mode-alist))
 
 
-  (add-hook 'web-mode-hook 'spacemacs/toggle-smartparens-on) ;;turn-on
+  (add-hook 'web-mode-hook 'spacemacs/toggle-smartparens-off) ;;turn-on
 
 
 
